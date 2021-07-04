@@ -1,5 +1,5 @@
 import './styles.css'
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { DateTime } from 'luxon'
 import AppHeader from './components/AppHeader'
 import WeekDaysHeader from './components/WeekDaysHeader'

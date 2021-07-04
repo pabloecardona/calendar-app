@@ -27,7 +27,7 @@
 .day {
   text-align: left;
   padding: 0px 10px;
-  height: 150px;
+  min-height: 150px;
   background-color: white;
 }
 
@@ -42,4 +42,35 @@
 .day--weekend {
   background-color: rgb(250, 250, 250);
   color: rgb(0, 151, 201)
+}
+
+.remindersList {
+  list-style: none;
+}
+
+.reminder {
+  display: flex;
+  align-items: center;
+  color: black;
+  font-size: small;
+  border-radius: 5px;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.reminder:hover {
+  background-color: rgb(226, 226, 226);
+}
+
+.reminderColor {
+  width: 0.75rem;
+  height: 0.75rem;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 0.2rem;
+}
+
+.btn-addReminder{
+  cursor: pointer;
 }

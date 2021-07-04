@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react"
+import { useState, useEffect } from 'react'
 
 const ReminderForm = ({handleSetReminder, reminderToEdit}) => {
   const [content, setContent] = useState('')
@@ -57,7 +57,7 @@ const ReminderForm = ({handleSetReminder, reminderToEdit}) => {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className='reminderForm' onSubmit={handleSubmit}>
       <textarea
         className="content"
         placeholder="Reminder"

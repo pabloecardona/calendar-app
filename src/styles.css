@@ -8,6 +8,17 @@
   font-family: "Poppins", sans-serif;
 }
 
+.appHeader {
+  display: flex;
+  justify-content: space-between;
+}
+
+.btn-prev, .btn-next {
+  margin: 0.2rem 0.7rem;
+  padding: 0.2rem;
+  min-width: 5rem;
+}
+
 .weekDaysHeader {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
@@ -40,8 +51,17 @@
 }
 
 .day--weekend {
-  background-color: rgb(250, 250, 250);
+  background-color: rgb(238, 238, 238);
   color: rgb(0, 151, 201)
+}
+
+.reminderForm {
+  font-family: "Poppins", sans-serif;
+  padding-top: 0.25rem;
+}
+
+.reminderForm textarea, .reminderForm input{
+  font-family: "Poppins", sans-serif;
 }
 
 .remindersList {

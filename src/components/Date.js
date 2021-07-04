@@ -5,17 +5,38 @@ import ReminderForm from './ReminderForm'
 const Date = ({date}) =>{
   const[reminders, setReminders] = useState([])
   const[editReminder, setEditReminder] = useState(false)
-
+  const[reminderToEdit, setReminderToEdit] = useState(null)
   const dayNumber = date.fullDate.toLocaleString({day: 'numeric'})
 
   const handleSetReminder = (newReminder) => {
     if(newReminder !== null){
-      setReminders(prevReminders => [...prevReminders, newReminder])
+      
+      setReminders(prevReminders => {
+        let updated = false
+        let updatedReminders = prevReminders.map((reminder) => {
+          if(reminder.id === newReminder.id){
+              updated = true
+              return newReminder
+            }
+          return reminder  
+          }) 
+        if(updated === false){
+          updatedReminders = [...prevReminders, newReminder]
+        }
+        const sortedReminders = updatedReminders.sort((a, b) => {
+          if (b.time < a.time){return 1;}
+          if (b.time > a.time){return -1;} 
+          return 0;
+        })
+
+        sortedReminders.map((reminder, i) => reminder.id = i)
+        
+        return sortedReminders
+      })
       console.log('reminder saved')
-      console.log(newReminder)
     }
+    setReminderToEdit(null)
     hideReminderForm()
-    
   } 
 
   
@@ -24,16 +45,18 @@ const Date = ({date}) =>{
   }
 
   const hideReminderForm = () => {
-    console.log('esconder form');
-    
     setEditReminder(false)
+  }
 
+  const handleEditReminder = (reminder) => {
+    setReminderToEdit(reminder)
+    showReminderForm()
   }
 
   return (
     <li className={`day ${date.isWeekend ? 'day--weekend' : ''}`}>
       {editReminder ? (
-        <ReminderForm handleSetReminder = {handleSetReminder} hideReminderForm = {hideReminderForm}/>
+        <ReminderForm handleSetReminder = {handleSetReminder} reminderToEdit={reminderToEdit}/>
       ) : (
       <>
         <div className={date.isOtherMonth ? 'day--otherMonth' : '' }>
@@ -43,7 +66,12 @@ const Date = ({date}) =>{
         <ul className='remindersList'>
         {reminders.map((reminder, i) => {
           return (
-            <Reminder key={i} reminder = {reminder} showReminderForm={showReminderForm} />
+            <Reminder 
+              key={i} 
+              reminder = {reminder} 
+              showReminderForm={showReminderForm} 
+              handleEditReminder={handleEditReminder}
+              />
           )})}
         </ul>
 

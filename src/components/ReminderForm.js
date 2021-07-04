@@ -1,10 +1,21 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 
-const ReminderForm = ({handleSetReminder}) => {
+const ReminderForm = ({handleSetReminder, reminderToEdit}) => {
   const [content, setContent] = useState('')
-  const [time, setTime] = useState(null)
-  const [color, setColor] = useState('#f0f0f0')
+  const [time, setTime] = useState('')
+  const [color, setColor] = useState('#55a4ab')
   const [city, setCity] = useState('')
+  const [id, setId] = useState()
+
+  useEffect(()=>{
+    if(reminderToEdit !== null){
+      setContent(reminderToEdit.content)
+      setTime(reminderToEdit.time)
+      setColor(reminderToEdit.color)
+      setCity(reminderToEdit.city)
+      setId(reminderToEdit.id)
+    }
+  },[reminderToEdit])
   // const handleClick = () => {
   //   console.log(newReminder)
   //   handleSetReminder(newReminder)
@@ -12,13 +23,14 @@ const ReminderForm = ({handleSetReminder}) => {
 
   const handleSubmit = (event) => {
     event.preventDefault()
+    
     const reminderToAdd = {
+      id: id,
       content: content,
       time: time,
       color: color,
       city: city
     }
-
     handleSetReminder(reminderToAdd)
     setContent('')
   }
@@ -26,7 +38,6 @@ const ReminderForm = ({handleSetReminder}) => {
   const handleCancel = (event) => {
     event.preventDefault()
     handleSetReminder(null)
-    setContent('')
   }
 
   const handleContentChange = ({ target }) => {
@@ -35,12 +46,10 @@ const ReminderForm = ({handleSetReminder}) => {
 
   const handleTimeChange = ({ target }) => {
     setTime(target.value)
-    console.log(target.value);
   }
 
   const handleColorChange = ({ target }) => {
     setColor(target.value)
-    console.log(target.value);
   }
 
   const handleCityChange = ({ target }) => {
@@ -57,7 +66,7 @@ const ReminderForm = ({handleSetReminder}) => {
         value={content}
       />
 
-      <input type="time" onChange={handleTimeChange} />
+      <input type="time" onChange={handleTimeChange} value={time} />
       <input type="color" onChange={handleColorChange} value={color} />
       <input value={city} onChange={handleCityChange} placeholder="City" />
       <button type='submit' className="btn-submit">Confirm</button>

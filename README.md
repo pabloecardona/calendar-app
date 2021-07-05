@@ -1,6 +1,6 @@
 
 # Calendar App 📅
-This is an app that allow you to schedule multiple reminders in a monthly calendar
+This is a demo app that allow you to schedule multiple reminders in a monthly calendar.
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 

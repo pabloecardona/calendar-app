@@ -31,8 +31,11 @@ const ReminderForm = ({handleSetReminder, reminderToEdit}) => {
       color: color,
       city: city
     }
-    handleSetReminder(reminderToAdd)
-    setContent('')
+    if(reminderToAdd.content === '' || reminderToAdd.time === ''){
+      handleSetReminder(null)
+    }else{
+      handleSetReminder(reminderToAdd)
+    }
   }
 
   const handleCancel = (event) => {

@@ -36,6 +36,7 @@
 }
 
 .day {
+  position: relative;
   text-align: left;
   padding: 0px 10px;
   min-height: 150px;
@@ -44,8 +45,12 @@
 
 .day:hover {
   background-color: #ebfdff;
-
 }
+.day:hover .btn-addReminder {
+  display: block;
+}
+
+
 .day--otherMonth {
   color: rgb(146, 145, 145);
 }
@@ -92,5 +97,16 @@
 }
 
 .btn-addReminder{
+  display: none;
   cursor: pointer;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  margin-bottom: 0.5rem;
+  margin-right: 0.5rem;
+}
+
+button {
+  font-family: "Poppins", sans-serif;
+  padding: 0rem 0.2rem;
 }
